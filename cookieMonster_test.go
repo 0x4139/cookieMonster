@@ -20,8 +20,8 @@ func (storage DummyStorage) Set(id string, cookie []byte) {
 
 func Test_cookieMonster(t *testing.T) {
 	jar := CookieMonster{
-		id:"dumb",
-		storage:DummyStorage{},
+		ID:"dumb",
+		Storage:DummyStorage{},
 	}
 	client := http.Client{Jar: jar}
 	_, err := client.Get("http://dubbelboer.com/302cookie.php")

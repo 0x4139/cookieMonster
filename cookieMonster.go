@@ -13,8 +13,8 @@ type CookieMonsterStorage interface {
 // our cookie jar
 // the identifier represents the way we uniquely represent the cookie in the db/file for example
 type CookieMonster struct {
-	storage CookieMonsterStorage
-	id      string
+	Storage CookieMonsterStorage
+	ID string
 }
 
 func (jar CookieMonster)  SetCookies(u *url.URL, cookies []*http.Cookie) {
@@ -22,13 +22,13 @@ func (jar CookieMonster)  SetCookies(u *url.URL, cookies []*http.Cookie) {
 	if err != nil {
 		panic(err)
 	}
-	jar.storage.Set(jar.id,serializedCookies)
+	jar.Storage.Set(jar.ID,serializedCookies)
 }
 
 func (jar CookieMonster) Cookies(u *url.URL) []*http.Cookie {
 	var cookies []*http.Cookie
 
-	serializedCookies:=jar.storage.Get(jar.id)
+	serializedCookies:=jar.Storage.Get(jar.ID)
 	if serializedCookies==nil || len(serializedCookies)==0{
 		return []*http.Cookie{}
 	}
