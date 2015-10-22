@@ -32,7 +32,7 @@ func (jar CookieMonster) Cookies(u *url.URL) []*http.Cookie {
 	if serializedCookies==nil || len(serializedCookies)==0{
 		return []*http.Cookie{}
 	}
-	err:=json.Unmarshal(serializedCookies,cookies)
+	err:=json.Unmarshal(serializedCookies,&cookies)
 	if err!=nil{
 		panic(err)
 	}
